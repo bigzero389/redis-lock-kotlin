@@ -31,4 +31,4 @@
 ### IDE 사용시
 * ide 에서 Main.kt 실행
 ### gradle 로 excutable jar 만들어서 실행시
-* ./gradlew clean build 이후 java -jar build/libs/RedisLock.jar 실행
+* ./gradlew clean build 이후 java -jar build/libs/RedisLockTest.jar 실행
