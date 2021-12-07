@@ -1,0 +1,35 @@
+
+plugins {
+    id 'application'
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.redisson/redisson
+    implementation group: 'org.redisson', name: 'redisson', version: '3.2.0'
+}
+
+def version = '0.1'
+def mainClassName= 'MainKt'
+
+// gradle default jar 를 커스터마이징 한다.
+// manifest default 생성값을 제외하고 별도로 만들어준다.
+jar {
+    manifest {
+        attributes(
+            'Title': 'RedisDistributedLock',
+            'Version': version,
+            'Main-Class': mainClassName,
+        )
+    }
+    from(configurations.runtimeClasspath.collect {
+        it.isDirectory() ? it : zipTree(it)
+    }) {
+        exclude 'META-INF', 'META-INF/**'
+    }
+}
